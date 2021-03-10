@@ -7,7 +7,7 @@
         <header>
             <h1>Моите бележки</h1>
         </header>
-        <form  action="handler.php" method="GET">
+        <form  action="handler.php" method="POST">
             <fieldset style="display: inline-block; background-color: rgb(120, 197, 207)">
                 <legend>Name</legend>
                 <label>Име на бележка</label>
@@ -42,8 +42,16 @@
             </fieldset>
         </form>
 
+        <fieldset style="display: inline-block; background-color: rgb(221, 204, 255)">
+        
         <?php
-            echo $_GET["noteName"];
+            echo "<fieldset>";
+            echo $_POST["noteName"];
+            echo "<br>";
+            echo $_POST["description"];
+            echo "</fieldset>";
         ?>
+
+</fieldset>
     </body>
 </html>
