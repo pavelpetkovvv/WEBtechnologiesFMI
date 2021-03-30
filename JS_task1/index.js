@@ -13,9 +13,9 @@ var username;
 var password;
 var repeatPassword;
 
-usernameField.onclick = resetFeedback;
-passwordField.onclick = resetFeedback;
-repeatPasswordField.onclick = resetFeedback;
+usernameField.onfocus = resetFeedback;
+passwordField.onfocus = resetFeedback;
+repeatPasswordField.onfocus = resetFeedback;
 
 
 var clickHandler = function(event) {
@@ -140,6 +140,24 @@ function giveFeedback(){
             div.appendChild(paragraph);
             wrongRepeatPasswordCross.hidden=false;
             }
+            else{
+                $.ajax({
+                    type : "POST",  //type of method
+                    url  : "register.php",  //your page
+                    contentType: "application/json; charset=UTF-8",
+                    data : {json: JSON.stringify(username)},
+                    dataType : "json",
+                
+                    error: function(res){
+                        console.log(res);
+                        console.log("failure");
+                    },
+                    success: function(res){  
+
+                        console.log("success");   
+                        }
+                });
+            }
 }
 
 function resetFeedback(){
@@ -159,3 +177,10 @@ function resetFeedback(){
         document.getElementById("incorrectInput").removeChild(document.getElementById("wrongRepeatPasswordTextFeedback"));
     }
 }
+
+/*
+data : JSON.stringify({
+    name : username,
+    password : password
+}),
+*/ 
