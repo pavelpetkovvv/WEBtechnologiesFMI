@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF=8">
+        <title>Responsive images</title>
+        <link rel="stylesheet" tyepe="text/css" href="./css/main.css">
+        <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Istok+Web&display=swap" rel="stylesheet">
+        <script defer src="./js/main.js"></script>
+    </head>
+    <body>
+        <div class="go_to_top">
+            <button onclick="topFunction()" id="myBtn" title="Go to top"><img id="arrow" src="./images/arrow_up.png"></button>
+        </div>
+        <header>
+            <h1>Responsive images</h1>
+        </header>
+        <div class="navigation">
+            <h2>Navigation</h2>
+            <div class="navigation_butons_panel">
+                <a class="navigation_button" href="#introduction">Въведение</a>
+                <a class="navigation_button" href="#what_is_responsive_image">Какво е responsive image</a>
+            </div>
+        </div>
+        <div class="introduction" id="introduction">
+            <div class="section_heading">
+                <h3>Въведение</h4>
+            </div>
+            <p>
+                Уеб страниците мога да бъдат достъпвани от всякакви устройства със всякакви размери и ориентация на екрана,
+                потребителите на даден уебсайт ще искат да го изполват както от лаптоп така и от таблет. Това прави задължително
+                правилното функциониране на вашия уебсайт на всякакъв вид устройство. То се постига чрез responsive design
+                (гъвкав дизайн), като един от неговите компоненти са responsive images (гъвкави изображения).
+            </p>
+            <p>
+                Този реферат запозванва читателя с основните концепции на responsive images, представя HTML елемнти и атрибути,
+                свързани с responsive images. Също така са представени практични примери.
+            </p>
+            <div class="snake_picture">
+                <div class="hint">  
+                    <p class="snake_hint">Промени ширината на прозореца и виж как се променя змията</p>
+                </div>
+                <picture>
+                    <source media="(min-width: 1200px)" srcset="./images/snake_wide.png 1.2x">
+                    <source media="(min-width: 800px)" srcset="./images/snake_medium.png 1.3x">
+                    <img src="./images/snake_small.png" alt="a cute snake">
+                </picture>
+            </div>
+        </div>
+        <div class="what_is_responsive_image" id="what_is_responsive_image">
+            <div class="section_heading">
+                <h3>Какво е Responsive Image?</h3>
+            </div>
+            <p>
+                Responsive image най-общо означава "изображение, което се показва добре на различни екрани", но под добре могат
+                да серазбира много неща. В най-общия случай изображението си променя размера според размера на екрана (прозореца),
+                на който се показва. Но това е само една от концепциите на responsive images. Други такива концепции са:
+            </p>
+            <ul>
+                <li>
+                    Показване на изображението в различен размер според размера на екрана.
+                </li>
+                <li>
+                    Показване на различна част на изображението според физическия размер на екрана, на който се показва
+                    или според резолюцията на устройствоето или според device-pixel ratio. Например на голям екран се показва
+                    снимка на човек в цял ръст, а на малък-само снимка на лицето му (долната снимка е пример, променете размера
+                    на прозореца и вижте).
+                </li>
+                <li>
+                    Показване на различно изображение според според физическия размер на екрана, на който се показва
+                    или според резолюцията на устройствоето или според device-pixel ratio. Както е примерът със змията.
+                </li>
+                <li>
+                    Показване на изображение в различен формат (например JPEG XR), ако браузърът го поддържа.
+                </li>
+            </ul>
+            <div class="person_photo">
+                <picture>
+                    <source media="(min-width: 1400px)" srcset="./images/person_full.jpg">
+                    <source media="(min-width: 1100px)" srcset="./images/person_medium.jpg">
+                    <img id="person" src="./images/person_tall.jpg" alt="person">
+                </picture>
+            </div>
+        </div>   
+        <footer>
+                
+        </footer> 
+    </body>
+</html>

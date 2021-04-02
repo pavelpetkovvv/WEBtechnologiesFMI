@@ -1,0 +1,107 @@
+header{
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgb(78, 197, 193);
+}
+
+body{
+    margin: auto;
+    background: #f4f4f4;
+    width: 80%;
+    overflow: hidden;
+    font-family: 'Istok Web', sans-serif;
+    overflow: auto;
+}
+
+
+.snake_picture{
+    margin-top: 50px;
+}
+
+.hint{
+    display: inline-flex;
+    text-align: center;
+    border-radius: 20px;
+    background-color: #e5e338;
+}
+
+h1, h2, h3, h4, h5, h6{
+    padding: 10px;
+}
+
+.section_heading{
+    text-align: left;
+    color: white;
+    margin-top: 50px;
+    border-radius: 20px;
+    background-color: #ec576b;
+}
+
+.snake_hint{
+    padding: 20px;
+    font-style: italic;
+}
+
+footer{
+    height: 100px;
+}
+
+.navigation{
+    text-align: center;
+    display: block;
+    background-color: rgb(78, 197, 193);
+    border-radius: 20px;
+}
+
+.navigation_butons_panel{
+    display: inline-flex;
+}
+
+.navigation_button{
+    background-color: #e5e338;
+    border: none;
+    margin-bottom: 20px;
+    display:flex;
+    padding: 15px 32px;
+    text-align: center;
+    border-radius: 0px;
+    cursor: pointer;
+    /*border-left: solid 1px black;
+    border-right: solid 1px black; */
+    text-decoration: none;
+    color: black;
+
+}
+
+.navigation_button:hover {background-color: #aaa829;}
+
+.person_photo{
+    margin-top: 50px;
+    text-align: center;
+}
+
+#myBtn {
+    display: none; /* Hidden by default */
+    position: fixed; /* Fixed/sticky position */
+    bottom: 20px; /* Place the button at the bottom of the page */
+    right: 10%; /* Place the button 30px from the right */
+    z-index: 99; /* Make sure it does not overlap */
+    border: none; /* Remove borders */
+    outline: none; /* Remove outline */
+    background-color: #e5e338; /* Set a background color */
+    color: black; /* Text color */
+    cursor: pointer; /* Add a mouse pointer on hover */
+    padding: 15px; /* Some padding */
+    border-radius: 100%; /* Rounded corners */
+  }
+  
+
+  #myBtn:hover {
+    background-color: #555; /* Add a dark-grey background on hover */
+  }
+
+  #arrow{
+      width: 40px;
+      height: auto;
+  }
