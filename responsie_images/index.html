@@ -21,11 +21,20 @@
             <div class="navigation_butons_panel">
                 <a class="navigation_button" href="#introduction">Въведение</a>
                 <a class="navigation_button" href="#what_is_responsive_image">Какво е responsive image</a>
+                <a class="navigation_button" href="#device_pixel_ratio">Device pixel ratio</a>
+                <a class="navigation_button" href="#creating_responsive_image">Създаване на responsive image</a>
+
+                <a class="navigation_button" href="#picture_element">Picture</a>
+                <a class="navigation_button" href="#sizes_atribute">Sizes</a>
+                <a class="navigation_button" href="#srcset_atribute">Srcset</a>
+                <a class="navigation_button" href="#examples">Примери</a>
+
+
             </div>
         </div>
         <div class="introduction" id="introduction">
             <div class="section_heading">
-                <h3>Въведение</h4>
+                <h3>Въведение</h3>
             </div>
             <p>
                 Уеб страниците мога да бъдат достъпвани от всякакви устройства със всякакви размери и ориентация на екрана,
@@ -39,7 +48,7 @@
             </p>
             <div class="snake_picture">
                 <div class="hint">  
-                    <p class="snake_hint">Промени ширината на прозореца и виж как се променя змията</p>
+                    <p class="hint_text">Промени ширината на прозореца и виж как се променя змията</p>
                 </div>
                 <picture>
                     <source media="(min-width: 1200px)" srcset="./images/snake_wide.png 1.2x">
@@ -75,6 +84,9 @@
                     Показване на изображение в различен формат (например JPEG XR), ако браузърът го поддържа.
                 </li>
             </ul>
+            <div class="hint">  
+                <p class="hint_text">Промени ширината на прозореца и виж как се променя снимката</p>
+            </div>
             <div class="person_photo">
                 <picture>
                     <source media="(min-width: 1400px)" srcset="./images/person_full.jpg">
@@ -82,7 +94,82 @@
                     <img id="person" src="./images/person_tall.jpg" alt="person">
                 </picture>
             </div>
-        </div>   
+        </div> 
+        <div class="device_pixel_ratio" id="device_pixel_ratio">  
+            <div class="section_heading">
+                <h3>Device pixel ratio</h3>
+            </div>
+            <p>
+                За да разберем responsive images е важно да разберем какво е device pixel ratio. Това е съотношението на броя физически
+                пиксели на устройството към логическите CSS пиксели.
+            </p>
+            <p>
+                Има две ключови условия, които трябва да се съобразят:
+            </p>
+            <ol>
+                <li>Плътност на пикселите. Устройствата с по-висока разделителна способност имат по-голяма плътност на пикселите за същото
+                    ниво на zoom, следователно има и по-висока device pixel ratio в сравнение с устройство с по-малка разделителна способност.
+                </li>
+                <li>
+                    Ниво на приближение на браузърът (zoom level): За едно и също устройство, по-голямо приближение означава по-голям брой 
+                    на device pixels към CSS pixels и следователно по-голямо device-pixel ratio. За пример, нека видим следната фигура:
+                </li>
+            </ol>
+        </div>
+        <div class="creating_responsive_image" id="creating_responsive_image">  
+            <div class="section_heading">
+                <h3>Създаване на Responsive Image</h3>
+            </div>
+            <p>
+                Има различни начини за създаване на responsive image. Възможно е това да бъде направено чрез JavaScript и CSS код, 
+                което обаче не се препоръчва, понеже е сложно и създава известни проблеми. По-добрият и препоръчван начин за 
+                създаване на responsive image е чрез HTML кода на уеб страницата. За целта се изполват:
+            </p>
+            <ol>
+                <li>
+                    Елемента picture.
+                </li>
+                <li>
+                    Атрибута sizes.
+                </li>
+                <li>
+                    Атрибута srcset.
+                </li>
+            </ol>
+        </div>
+
+        <div class="picture_element" id="picture_element">  
+            <div class="section_heading">
+                <h3>Елемента picture</h3>
+            </div>
+            <div class="code_snippet">
+                <pre>
+                    <code>
+lorem ipsum
+feadvnads
+                    </code>
+                </pre>
+            </div>
+        </div>
+
+        <div class="sizes_atribute" id="sizes_atribute">  
+            <div class="section_heading">
+                <h3>Атрибута sizes</h3>
+           </div>
+        </div>
+
+        <div class="srcset_atribute" id="srcset_atribute">  
+           <div class="section_heading">
+                <h3>Атрибута srcset</h3>
+            </div>
+        </div>    
+
+        <div class="examples" id="examples">  
+            <div class="section_heading">
+                <h3>Примери</h3>
+            </div>
+        </div>    
+
         <footer>
                 
         </footer> 

@@ -38,13 +38,17 @@ h1, h2, h3, h4, h5, h6{
     background-color: #ec576b;
 }
 
-.snake_hint{
+.hint_text{
     padding: 20px;
     font-style: italic;
 }
 
 footer{
     height: 100px;
+    margin: auto;
+    border-radius: 20px;
+    text-align: center;
+    background-color: rgb(78, 197, 193);
 }
 
 .navigation{
@@ -52,6 +56,7 @@ footer{
     display: block;
     background-color: rgb(78, 197, 193);
     border-radius: 20px;
+    overflow: auto;
 }
 
 .navigation_butons_panel{
@@ -78,7 +83,6 @@ footer{
 
 .person_photo{
     margin-top: 50px;
-    text-align: center;
 }
 
 #myBtn {
@@ -104,4 +108,12 @@ footer{
   #arrow{
       width: 40px;
       height: auto;
+  }
+
+  .code_snippet{
+      background-color: rgb(134, 134, 134);
+      text-align: left;
+      border-radius: 20px;
+      padding: 20px;
+      display: inline-flex;
   }
