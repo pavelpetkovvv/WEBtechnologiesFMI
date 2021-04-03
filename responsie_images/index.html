@@ -364,13 +364,107 @@ srcset="./images/man_and_dog_large.jpg 1000w, ./images/man_and_dog_large.jpg 100
                 </pre>
             </div>  
         </div>
-
-
-        <div class="hint">  
-            <p class="hint_text">Промени размера на долния прозорец и виж как се променя снимката</p>
+        <div>
+            <p>
+                В този пример сме използвали picture, който съдържа няколко source елемента.
+                 Първият се избира, когато максималната ширина е <em>700px</em>. Ако това е избрано,
+                  атрибута <code class="single_line">sizes</code> определя размера на изображението, което да се покаже в зависимост
+                   от опциите, които сме задали. Имплементацията е същата, като при примера, който разгледахме
+                    в секцията за <code class="single_line">sizes</code> атрибута. Така, ако максималната ширина е <em>500px</em>
+                     (тоест е от <em>0px</em> до <em>500px</em>), то изображението ще заеме половината от прозореца.
+                      Ако ли пък ширината е по-голяма от <em>500px</em> (но <em>&lt=700px</em>, защото сме в първия
+                      <code class="single_line">source</code> елемент), тогава изображението ще заеме само <em>1/10</em> от прозореца.
+            </p>
+            <p>
+                Подобно, вторият <code class="single_line">sizes</code> елемент се избира, ако максималната ширина е
+                <em>1400px</em> (което в случая означава да е в диапазона от <em>701px</em> до <em>1400px</em>). Атрибута
+                <code class="single_line">sizes</code> осигурява, че ако ширината на прозорецът е от <em>701px</em>
+                 до <em>1000px</em>, то ширината на изображението ще е 90% от тази на прозорецът, но ако пък
+                  ширината на прозорецът е от <em>1001px</em> до <em>1400px</em>, то изображението ще заеме половината
+                   от ширината на прозорецът.
+            </p>
+            <div class="spacer"></div>
+            <p>
+                Сега с няколко снимки ще покажем какво се случва при различните сценарии:
+            </p>
         </div>
+        <div id="example_variant1">
+                <p>
+                Вариант 1: ширината на прозорецът е между <em>1001px</em> и <em>1400px</em>, то
+                в нашия пример, ширината на изображението е половината от ширината на прозорецът. (използва се
+                 изображението <em>man_and_dog_large.jpg</em>)
+                </p>
+
+                 <picture>
+                    <source media="(max-width: 1000px)" sizes="(max-width: 0px) 60vw, 80vw"
+                    srcset="images\examples\1001-1400px.png 1920w, images\examples\1001-1400px.png 1920w">
+
+                    <source media="(max-width: 3000px)" sizes="(max-width: 1000px) 50vw, 50vw"
+                    srcset="images\examples\1001-1400px.png 1920w, images\examples\1001-1400px.png 1920w">
+
+                <img src="images\examples\1001-1400px.png" alt="figure1">
+                </picture>
+
+        </div>
+        <div id="example_variant2">
+                <p>
+                Вариант 2: ширината на прозорецът е между <em>701px</e> и <em>1000px</em>, тогава ширината на изображението
+                 е 90% от ширината на прозорецът. (използва се изображението <em>man_and_dog_large.jpg</em>)
+                </p>
+
+                 <picture>
+                    <source media="(max-width: 1000px)" sizes="(max-width: 0px) 60vw, 80vw"
+                    srcset="./images/examples/701-1000px.png 1920w, ./images/examples/701-1000px.png 1920w">
+
+                    <source media="(max-width: 3000px)" sizes="(max-width: 1000px) 50vw, 50vw"
+                    srcset="./images/examples/701-1000px.png 1920w, ./images/examples/701-1000px.png 1920w">
+
+                   <img src="images\examples\701-1000px.png" alt="figure2">
+                </picture>
+
+        </div>
+        <div id="example_variant3">
+                <p>
+                Вариант 3: ширината на прозорецът е между <em>501px</e> и <em>700px</e>, тогава ширината на изображението
+                 е <em>1/10</em> от ширината на прозорецът. (използва се изображението <em>man_and_dog_small.jpg</em>)
+                </p>
+
+                 <picture>
+                    <source media="(max-width: 1000px)" sizes="(max-width: 0px) 60vw, 80vw"
+                    srcset="images\examples\501-700px.png 1920w, images\examples\501-700px.png 1920w">
+
+                    <source media="(max-width: 3000px)" sizes="(max-width: 1000px) 50vw, 50vw"
+                    srcset="images\examples\501-700px.png 1920w, images\examples\501-700px.png 1920w">
+
+                   <img src="images\examples\501-700px.png" alt="figure2">
+                </picture>
+
+        </div>
+        <div id="example_variant4">
+                <p>
+                Вариант 4: ширината на прозорецът е между <em>0px</em> и <em>500px</em>, тогава ширината на изображението
+                 е половината от ширината на прозорецът. (използва се изображението <em>man_and_dog_small.jpg</em>)
+                </p>
+
+                 <picture>
+                    <source media="(max-width: 1000px)" sizes="(max-width: 0px) 60vw, 80vw"
+                    srcset="images\examples\0-500px.png 1920w, images\examples\0-500px.png 1920w">
+
+                    <source media="(max-width: 3000px)" sizes="(max-width: 1000px) 50vw, 50vw"
+                    srcset="images\examples\0-500px.png 1920w, images\examples\0-500px.png 1920w">
+
+                   <img src="images\examples\0-500px.png" alt="figure2">
+                </picture>
+
+        </div>
+
+        <div class="spacer"></div>
+        <div class="section_heading">  
+            <h3>Изпробвай примерите. Промени размера на долния прозорец и виж как се променя снимката.</h3>
+        </div>
+
         <!--dimensions of resizable iframe-->
-            <div id="frame_size_display">
+            <div id="frame_size_display" class="frame_size_display">
             </div>
             <!--resizable iframe with responsive image inside-->
             <div class="resizable" id="iframe_responsive_image_example_container">
