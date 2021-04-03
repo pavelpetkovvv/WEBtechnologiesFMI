@@ -3,10 +3,24 @@
     <head>
         <meta charset="UTF=8">
         <title>Responsive images</title>
+
+        <!--link to css-->
         <link rel="stylesheet" tyepe="text/css" href="./css/main.css">
+
+        <!--link to used fonts-->
         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
         <link rel="preconnect" href="https://fonts.gstatic.com">
         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Istok+Web&display=swap" rel="stylesheet">
+        
+
+        <!--Include jQuery & jQuery UI-->
+        <link href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/themes/start/jquery-ui.css"rel="stylesheet" />
+        <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js"></script>
+        <script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
+
+        <!--script to resize iframe-->
+        <script src="./php/resize.php"></script>
+
         <script defer src="./js/main.js"></script>
     </head>
     <body>
@@ -33,7 +47,7 @@
                 <a class="navigation_button" href="#srcset_atribute">Srcset</a>
                 <a class="navigation_button" href="#sizes_atribute">Sizes</a>
                 <a class="navigation_button" href="#picture_element">Picture</a>
-                <a class="navigation_button" href="#examples">Примери</a>
+                <a class="navigation_button" href="#examples">Пример</a>
 
 
             </div>
@@ -202,7 +216,10 @@ images/space-needle-hd.jpg 3x">
                     <p>
                         Ако обаче желаете на различни по големина екрани да се покават различни изображения се използва
                         <code class="single_line">w</code> дескриптора в <code class="single_line">srcset</code> в комбинация с 
-                        атрибута <code class="single_line">sizes</code>. Накратко <code class="single_line">w</code> дескриптора
+                        атрибута <code class="single_line">sizes</code>.
+                    </p>
+                    <p>
+                        Накратко <code class="single_line">w</code> дескриптора
                         показва какъв размер на изображението да бъде рефериран. Долният пример указва ширината на първата снимка
                         да е <em>200px</em>, на втората <em>400px</em>, а на третата <em>600px</em>.
                     </p>
@@ -345,8 +362,14 @@ srcset="stick-figure.png 416w, stick-figure-hd.png 416w">
 &lt/html>
                     </code>
                 </pre>
-
             </div>
+
+            <!--resizable iframe with responsive image inside-->
+            <div class="resizable">
+                <iframe src="./responsive_image_example.html" frameborder="1">
+                </iframe>
+            </div>
+
         </div>    
         <!--examples END-->
 
