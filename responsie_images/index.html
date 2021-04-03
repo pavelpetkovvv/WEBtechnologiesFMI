@@ -10,12 +10,18 @@
         <script defer src="./js/main.js"></script>
     </head>
     <body>
+
+        <!--go to top of page button-->
         <div class="go_to_top">
             <button onclick="topFunction()" id="myBtn" title="Go to top"><img id="arrow" src="./images/arrow_up.png"></button>
         </div>
+        <!--go to top of page button END-->
+        
         <header>
             <h1>Responsive images</h1>
         </header>
+
+        <!--navigation panel-->
         <div class="navigation">
             <h2>Navigation</h2>
             <div class="navigation_butons_panel">
@@ -32,6 +38,9 @@
 
             </div>
         </div>
+        <!--navigation panel END-->
+
+        <!--introduction-->
         <div class="introduction" id="introduction">
             <div class="section_heading">
                 <h3>Въведение</h3>
@@ -50,13 +59,19 @@
                 <div class="hint">  
                     <p class="hint_text">Промени ширината на прозореца и виж как се променя змията</p>
                 </div>
+
+            <!--responsive image "snake"-->
                 <picture>
                     <source media="(min-width: 1200px)" srcset="./images/snake_wide.png 1.2x">
                     <source media="(min-width: 800px)" srcset="./images/snake_medium.png 1.3x">
                     <img src="./images/snake_small.png" alt="a cute snake">
                 </picture>
             </div>
+
         </div>
+        <!--introduction END-->
+
+        <!--explanation of responsive image-->
         <div class="what_is_responsive_image" id="what_is_responsive_image">
             <div class="section_heading">
                 <h3>Какво е Responsive Image?</h3>
@@ -87,14 +102,20 @@
             <div class="hint">  
                 <p class="hint_text">Промени ширината на прозореца и виж как се променя снимката</p>
             </div>
+
+            <!--responsive image "person in the mountains"-->
             <div class="person_photo">
                 <picture>
                     <source media="(min-width: 1400px)" srcset="./images/person_full.jpg">
                     <source media="(min-width: 1100px)" srcset="./images/person_medium.jpg">
-                    <img id="person" src="./images/person_tall.jpg" alt="person">
+                    <img id="person" src="./images/person_tall.jpg" alt="person in the mountains">
                 </picture>
             </div>
+
         </div> 
+        <!--explanation of responsive image END-->
+
+        <!--explanation of device pixel ratio-->
         <div class="device_pixel_ratio" id="device_pixel_ratio">  
             <div class="section_heading">
                 <h3>Device pixel ratio</h3>
@@ -116,6 +137,10 @@
                 </li>
             </ol>
         </div>
+        <!--explanation of device pixel ratio END-->
+
+
+        <!--creating responsive image-->
         <div class="creating_responsive_image" id="creating_responsive_image">  
             <div class="section_heading">
                 <h3>Създаване на Responsive Image</h3>
@@ -127,17 +152,37 @@
             </p>
             <ol>
                 <li>
-                    Елемента picture.
+                    Атрибута srcset.
                 </li>
                 <li>
                     Атрибута sizes.
                 </li>
                 <li>
-                    Атрибута srcset.
+                    Елемента picture.
                 </li>
             </ol>
         </div>
+        <!--creating responsive image END-->
 
+        <!-- Description of srcset atribute-->
+        <div class="srcset_atribute" id="srcset_atribute">  
+            <div class="section_heading">
+                 <h3>Атрибута srcset</h3>
+             </div>
+         </div>    
+        <!-- Description of srcset atribute END-->
+
+ 
+         <!-- Description of sizes atribute-->
+        <div class="sizes_atribute" id="sizes_atribute">  
+            <div class="section_heading">
+                <h3>Атрибута sizes</h3>
+           </div>
+        </div>
+         <!-- Description of sizes atribute END-->
+
+
+        <!-- Description of picture element-->
         <div class="picture_element" id="picture_element">  
             <div class="section_heading">
                 <h3>Елемента picture</h3>
@@ -151,24 +196,16 @@ feadvnads
                 </pre>
             </div>
         </div>
+        <!-- Description of picture element END-->
 
-        <div class="sizes_atribute" id="sizes_atribute">  
-            <div class="section_heading">
-                <h3>Атрибута sizes</h3>
-           </div>
-        </div>
 
-        <div class="srcset_atribute" id="srcset_atribute">  
-           <div class="section_heading">
-                <h3>Атрибута srcset</h3>
-            </div>
-        </div>    
-
+        <!--examples-->
         <div class="examples" id="examples">  
             <div class="section_heading">
                 <h3>Примери</h3>
             </div>
         </div>    
+        <!--examples END-->
 
         <footer>
                 
