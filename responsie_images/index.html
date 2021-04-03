@@ -27,12 +27,12 @@
             <div class="navigation_butons_panel">
                 <a class="navigation_button" href="#introduction">Въведение</a>
                 <a class="navigation_button" href="#what_is_responsive_image">Какво е responsive image</a>
-                <a class="navigation_button" href="#device_pixel_ratio">Device pixel ratio</a>
+                <a class="navigation_button" href="#device_pixel_ratio">Device-pixel ratio</a>
                 <a class="navigation_button" href="#creating_responsive_image">Създаване на responsive image</a>
 
-                <a class="navigation_button" href="#picture_element">Picture</a>
-                <a class="navigation_button" href="#sizes_atribute">Sizes</a>
                 <a class="navigation_button" href="#srcset_atribute">Srcset</a>
+                <a class="navigation_button" href="#sizes_atribute">Sizes</a>
+                <a class="navigation_button" href="#picture_element">Picture</a>
                 <a class="navigation_button" href="#examples">Примери</a>
 
 
@@ -57,12 +57,12 @@
             </p>
             <div class="snake_picture">
                 <div class="hint">  
-                    <p class="hint_text">Промени ширината на прозореца и виж как се променя змията</p>
+                    <p class="hint_text">Промени ширината на прозореца или zoom-а на браузъра (Ctrl + Plus) и виж как се променя змията</p>
                 </div>
 
             <!--responsive image "snake"-->
                 <picture>
-                    <source media="(min-width: 1200px)" srcset="./images/snake_wide.png 1.2x">
+                    <source media="(min-width: 1200px)" srcset="./images/snake_wide.png 1.3x">
                     <source media="(min-width: 800px)" srcset="./images/snake_medium.png 1.3x">
                     <img src="./images/snake_small.png" alt="a cute snake">
                 </picture>
@@ -100,7 +100,7 @@
                 </li>
             </ul>
             <div class="hint">  
-                <p class="hint_text">Промени ширината на прозореца и виж как се променя снимката</p>
+                <p class="hint_text">Промени ширината на прозореца или zoom-а на браузъра (Ctrl + Plus) и виж как се променя снимката</p>
             </div>
 
             <!--responsive image "person in the mountains"-->
@@ -121,7 +121,7 @@
                 <h3>Device pixel ratio</h3>
             </div>
             <p>
-                За да разберем responsive images е важно да разберем какво е device pixel ratio. Това е съотношението на броя физически
+                За да разберем responsive images е важно да разберем какво е device-pixel ratio. Това е съотношението на броя физически
                 пиксели на устройството към логическите CSS пиксели.
             </p>
             <p>
@@ -129,7 +129,7 @@
             </p>
             <ol>
                 <li>Плътност на пикселите. Устройствата с по-висока разделителна способност имат по-голяма плътност на пикселите за същото
-                    ниво на zoom, следователно има и по-висока device pixel ratio в сравнение с устройство с по-малка разделителна способност.
+                    ниво на zoom, следователно има и по-висока device-pixel ratio в сравнение с устройство с по-малка разделителна способност.
                 </li>
                 <li>
                     Ниво на приближение на браузърът (zoom level): За едно и също устройство, по-голямо приближение означава по-голям брой 
@@ -137,7 +137,7 @@
                 </li>
             </ol>
         </div>
-        <!--explanation of device pixel ratio END-->
+        <!--explanation of device-pixel ratio END-->
 
 
         <!--creating responsive image-->
@@ -169,6 +169,53 @@
             <div class="section_heading">
                  <h3>Атрибута srcset</h3>
              </div>
+             <div>
+                 <p>Ако искате да покажете различни изображения или различни части на едно и също изображение
+                     в зависимост от device-pixel ratio, най-подходящият начин е да използвате атрибута <code class="single_line">srcset</code>.
+                 </p>
+                 <div class="code_snippet">
+                    <pre tabindex="0">
+                        <code class="multi_line">
+&ltimg src="images/space-needle.jpg"
+srcset="images/space-needle.jpg 1x, images/space-needle-2x.jpg 2x,
+images/space-needle-hd.jpg 3x">
+                        </code>
+                    </pre>
+                </div> 
+                    <p>
+                    <code class="single_line">x</code> десктиптора в <code class="single_line">srcset</code>
+                     атрибута се използва, за да дефинира <em>device-pixel ratio.</em>
+                    </p>
+                    <ol>
+                        <li>За device-pixel ratio 1, ще се използва <em>images/space-needle.jpg</em></li>
+                        <li>За device-pixel ratio 2, ще се използва <em>images/space-needle-2x.jpg</em></li>
+                        <li>За device-pixel ratio 3, ще се използва <em>images/space-needle-hd.jpg</em></li>
+                    </ol>
+                    <p>
+                        <code class="single_line">src</code> атрибута се задава, за да се използва от браузърите, които не
+                        поддържат <code class="single_line">srcset</code> атрибута.
+                    </p>
+                    <p>
+                        Използвайки <code class="single_line">x</code> дескриптор винаги ще се показва едно и също изображение на
+                        устройства с еднакво <em>device-pixel ratio</em>, независимо дали е 15 инчов лаптоп или на смартфон с 5 инча екран.
+                    </p>
+                    <p>
+                        Ако обаче желаете на различни по големина екрани да се покават различни изображения се използва
+                        <code class="single_line">w</code> дескриптора в <code class="single_line">srcset</code> в комбинация с 
+                        атрибута <code class="single_line">sizes</code>. Накратко <code class="single_line">w</code> дескриптора
+                        показва какъв размер на изображението да бъде рефериран. Долният пример указва ширината на първата снимка
+                        да е <em>200px</em>, на втората <em>400px</em>, а на третата <em>600px</em>.
+                    </p>
+                    <div class="code_snippet">
+                        <pre tabindex="0">
+                            <code class="multi_line">
+&ltimg src="images/space-needle.jpg"
+srcset="images/space-needle.jpg 200w, images/space-needle-2x.jpg 400w,
+images/space-needle-hd.jpg 600w">
+                            </code>
+                        </pre>
+                    </div> 
+             </div>
          </div>    
         <!-- Description of srcset atribute END-->
 
@@ -178,22 +225,84 @@
             <div class="section_heading">
                 <h3>Атрибута sizes</h3>
            </div>
+           <div>
+               <p>
+                    За да се показва различен размер на снимката (ширина и височина) в зависимост от размера на прозореца,
+                    то трябва да се използва атрибута <code class="single_line">sizes</code> в
+                     комбинация с атрибута <code class="single_line">srcset</code> и
+                     <code class="single_line">w</code> дескриптора.
+                    Мерната единица vw = % от прозорецът, например 50vw = 50%
+                </p>
+                <div class="code_snippet">
+                    <pre>
+                        <code class="multi_line">
+&ltimg src="images/space-needle.jpg" sizes="50vw"
+srcset="images/space-needle.jpg 200w, images/space-needle-2x.jpg 400w,
+images/space-needle-hd.jpg 600w">
+                        </code>
+                    </pre>
+                </div>
+                <p>
+                    Браузърът ще реши кое изображение да покаже спрямо  ширината на прозореце и device-pixel ratio. Например:
+                </p>
+                <ul>
+                    <li>Ако размерът на прозореца е 500 CSS пиксела, то изображението ще се покаже с ширина 250px (заради 50vw).</li>
+                    <li>Така, за 1.5x дисплей, ще се покаже снимката images/space-needle-2x.jpg, защото е най-близо до 1.6x
+                         device-pixel ratio.</li>
+                </ul>
+
+           </div>
         </div>
          <!-- Description of sizes atribute END-->
-
 
         <!-- Description of picture element-->
         <div class="picture_element" id="picture_element">  
             <div class="section_heading">
                 <h3>Елемента picture</h3>
             </div>
+            <div>
+                <p>
+                    Когато искаме да покажем различна снимка (която е по-фокусирана върху основния обект) при различните размери
+                     на екрана на устройството и искаме да запазим разделянето на отделни варианти за една и съща снимка въз ознова
+                      на device-pixel ratio и искаме да направим различни размери на снимката според размера на прозореца, то
+                       за да постигнем всичко това, трябва да използваме picture елемента.
+                </p>
+            </div>
             <div class="code_snippet">
-                <pre>
-                    <code>
-lorem ipsum
-feadvnads
+                <pre tabindex="0">
+                    <code class="multi_line">
+&ltpicture>
+
+&ltsource media="(max-width: 20em)" srcset="images/small/space-needle.jpg 1x,
+images/small/space-needle-2x.jpg 2x, images/small/space-needle-hd.jpg 3x">
+                            
+&ltsource media="(max-width: 40em)" srcset="images/medium/space-needle.jpg 1x,
+images/medium/space-needle-2x.jpg 2x, images/medium/space-needle-hd.jpg 3x">
+                            
+&ltimg src="space-needle.jpg" alt="Space Needle">
+                            
+&lt/picture>
                     </code>
                 </pre>
+            </div>    
+            <div>
+                <p>
+                    Нека разглдаме горния пример. В него ще бъде изпълнен първият <code class="single_line">source</code> елемент,
+                     чийто атрибут <code class="single_line">media</code> е верен. Така например, ако максималната ширина на прозореца
+                     е <code class="single_line">20em</code>, то съответното изображение, ще бъде избрано от images/small папката, въз основа 
+                     на device-pixel ratio. Всички изображения в един srcset обикновено са различни варианти на едно и също изображение.
+                </p>
+                <p>
+                    <code class="single_line">picture</code> елемента сам по себе си не показва нищо. Дори когато има
+                    <code  class="single_line">source</code> елемент намиращ се в <code class="single_line">picture</code> елемент
+                     не се показва нищо. Необходимо <code  class="single_line">source</code> елемента да има
+                      <code  class="single_line">srcset</code> атрибут с въведени различни <code  class="single_line">sizes</code>,
+                      <code  class="single_line">media</code> и <code  class="single_line">type</code> атрибути.
+                      Също така трябва да се добави <code  class="single_line">img</code> елемент вътре
+                       в <code  class="single_line">picture</code> елемента. Няма да се вижда никакво изображение,
+                       ако го няма <code  class="single_line">img</code> елемента. Всички <code  class="single_line">source</code>
+                        елементи се слагат просто за да зададат източници на изображението.
+                </p>
             </div>
         </div>
         <!-- Description of picture element END-->
@@ -202,7 +311,41 @@ feadvnads
         <!--examples-->
         <div class="examples" id="examples">  
             <div class="section_heading">
-                <h3>Примери</h3>
+                <h3>Пример</h3>
+            </div>
+            <div>
+                <p>
+                    След като вече знаем основните концепции, нега сега да обединим
+                     <code class="single_line">srcset</code>, <code class="single_line">sizes</code>
+                      и <code class="single_line">picture</code>, за да получим работещ пример.
+                </p>
+            </div>
+            <div class="code_snippet">
+                <pre>
+                    <code class="multi_line">
+&lt!DOCTYPE html>
+&lthtml>
+&lthead>
+&lttitle> Responsive images are here! &lt/title>
+&lt/head>
+                        
+&ltbody style="width:100%">
+                        
+&ltpicture>
+&ltsource media="(max-width: 700px)" sizes="(max-width: 500px) 50vw, 10vw"
+srcset="stick-figure-narrow.png 138w, stick-figure-hd-narrow.png 138w">
+                        
+&ltsource media="(max-width: 1400px)" sizes="(max-width: 1000px) 100vw, 50vw"
+srcset="stick-figure.png 416w, stick-figure-hd.png 416w">
+                        
+&ltimg src="stick-original.png" alt="Human">
+&lt/picture>
+                        
+&lt/body>
+&lt/html>
+                    </code>
+                </pre>
+
             </div>
         </div>    
         <!--examples END-->
