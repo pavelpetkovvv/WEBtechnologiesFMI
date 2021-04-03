@@ -345,28 +345,36 @@ images/medium/space-needle-2x.jpg 2x, images/medium/space-needle-hd.jpg 3x">
 &lthead>
 &lttitle> Responsive images are here! &lt/title>
 &lt/head>
-                        
-&ltbody style="width:100%">
-                        
+                                                                        
+&ltbody style="width:90%">
+                                                                        
 &ltpicture>
 &ltsource media="(max-width: 700px)" sizes="(max-width: 500px) 50vw, 10vw"
-srcset="stick-figure-narrow.png 138w, stick-figure-hd-narrow.png 138w">
-                        
-&ltsource media="(max-width: 1400px)" sizes="(max-width: 1000px) 100vw, 50vw"
-srcset="stick-figure.png 416w, stick-figure-hd.png 416w">
-                        
-&ltimg src="stick-original.png" alt="Human">
+srcset="./images/man_and_dog_small.jpg 500w, ./images/man_and_dog_small.jpg 500w">
+                                                                        
+&ltsource media="(max-width: 1400px)" sizes="(max-width: 1000px) 90vw, 50vw"
+srcset="./images/man_and_dog_large.jpg 1000w, ./images/man_and_dog_large.jpg 1000w">
+                                                                        
+&ltimg src="./images/man_and_dog.jpg" alt="Human">
 &lt/picture>
-                        
+                                                                        
 &lt/body>
 &lt/html>
                     </code>
                 </pre>
-            </div>
+            </div>  
+        </div>
 
+
+        <div class="hint">  
+            <p class="hint_text">Промени размера на долния прозорец и виж как се променя снимката</p>
+        </div>
+        <!--dimensions of resizable iframe-->
+            <div id="frame_size_display">
+            </div>
             <!--resizable iframe with responsive image inside-->
-            <div class="resizable">
-                <iframe src="./responsive_image_example.html" frameborder="1">
+            <div class="resizable" id="iframe_responsive_image_example_container">
+                <iframe src="./responsive_image_example.html" frameborder="1" id="iframe_responsive_image_example">
                 </iframe>
             </div>
 
