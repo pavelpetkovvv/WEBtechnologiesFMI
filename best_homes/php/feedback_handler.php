@@ -8,7 +8,7 @@ $message = $_POST['client_text'];
 $mes = "Name: $name \nE-mail: $email \nMessage: $message";
 
 // Trying to send the message using the PHP mailer module.
-$send = mail ("pavelpetkovvv@gmail.com","website feedback",$mes,"Content-type:text/plain; charset = UTF-8\r\nFrom:$email");
+$send = mail ("best.homes@abv.bg", "website feedback",$mes,"Content-type:text/plain; charset = UTF-8\r\nFrom:best.homes@abv.bg");
 // If send successful:
 if ($send == 'true')
 // ‘Echo’ returns some text back to the webpage.

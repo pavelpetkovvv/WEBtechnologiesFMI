@@ -34,12 +34,12 @@ footer{
 
 .navigation{
     text-align: center;
-    display: block;
     background-color: rgba(146,158,84,255);
     overflow: auto;
 }
 
 .navigation_buttons_panel{
+    vertical-align: middle;
     display: inline-flex;
 }
 
@@ -86,6 +86,13 @@ footer{
 
 .slideshow_container{
     position: relative;
+    display: flex;
+}
+
+@media screen and (max-width: 710px){
+    .message_outer{
+        display: none;
+    }
 }
 
 .prev,
@@ -254,8 +261,15 @@ footer{
 }
 
 @media screen and (max-width: 710px) {
+    .site_heading_container{
+        display: none;
+    }
+    header{
+        display: block;
+    }
     .header_image_logo_container {
-        display: none !important;
+        position: relative;
+        float: none;
     }
     .page_text{
         width: 95% !important;
@@ -283,15 +297,19 @@ footer{
     }
 }
 
+/*
 @media screen and (max-width: 570px) {
     .swipe_to_see_message_top{
         display: block;
     }
     
 }
+*/
 
+/*
 .swipe_to_see_container_top{
     margin: 0;
+    
     padding: 3px;
     background-color: rgba(146,158,84,255);
 }
@@ -301,6 +319,7 @@ footer{
         display: none;
     }
 }
+*/
 
 /* contact form */
 
@@ -369,3 +388,73 @@ input[type=text] {
     border-radius: 5px;
 
   }
+
+
+  .help_arrow{
+  position: absolute;
+  z-index: 1;
+  display: none;
+  top: 23%;
+  width: auto;
+  padding: 0px;
+  color: rgb(255, 255, 255);
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  animation: infinite 10s blink;
+  }
+
+  #help_arrow_right {
+    right: 0;
+    border-radius: 3px 0 0 3px;
+  }
+
+  @keyframes blink {
+    0% {
+        opacity: 30%;
+    }
+    10%{
+        opacity: 100%;
+    }
+    20%{
+        opacity: 30%;
+    }
+    30%{
+        opacity: 100%;
+    }
+    40%{
+        opacity: 30%;
+    }
+    50% {
+        opacity: 100%;
+    }
+    60% {
+        opacity: 30%;
+    }
+    70%{
+        opacity: 100%;
+    }
+    80%{
+        opacity: 30%;
+    }
+    90%{
+        opacity: 100%;
+    }
+    100%{
+        opacity: 30%;
+    }
+}
+
+@media screen and (max-width: 580px)  {
+    .help_arrow{
+        display: flex;
+    }
+}
+
+#help_arrow_left_bottom{
+    bottom: 40%;
+    color: black;
+}
