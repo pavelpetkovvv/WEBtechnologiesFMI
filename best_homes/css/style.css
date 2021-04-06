@@ -25,6 +25,7 @@ header{
 
 
 footer{
+    margin-top: 5%;
     height: 200px;
     text-align: center;
     vertical-align: middle;
@@ -56,6 +57,7 @@ footer{
     text-decoration: none;
     color: white;
     font-size: large;
+    white-space: nowrap;
 }
 
 #active{
@@ -291,7 +293,7 @@ footer{
     display: none;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 800px) {
     .swipe_to_see_message{
         display: block;
     }
@@ -326,6 +328,7 @@ footer{
 .email_form_container{
     width: 80%;
     margin: auto;
+    margin-bottom: 5%;
 }
 
 .email_form_box{
@@ -448,13 +451,20 @@ input[type=text] {
     }
 }
 
-@media screen and (max-width: 580px)  {
+@media screen and (max-width: 490px)  {
     .help_arrow{
         display: flex;
     }
 }
 
-#help_arrow_left_bottom{
-    bottom: 40%;
-    color: black;
+.page_heading{
+    text-align: left;
+    color: white;
+    margin-top: 50px;
+    border-radius: 20px;
+    background-color: rgba(146,158,84,255);
+}
+
+.page_heading_text{
+    padding: 15px;
 }
