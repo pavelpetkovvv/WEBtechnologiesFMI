@@ -12,7 +12,89 @@ $send = mail ("best.homes@abv.bg", "website feedback",$mes,"Content-type:text/pl
 // If send successful:
 if ($send == 'true')
 // ‘Echo’ returns some text back to the webpage.
-{echo "Message sent";}
+{echo '<meta charset="UTF-8">
+    <div class="alert">
+        <div style="text-align: center;">
+        <p>
+        Съобщението е изпратено успешно. Натиснете бутона, за да се върнете към предишната страница.
+        </p>
+        <button class="circle_button" onclick="goBack()">&#10094;</button>
+    </div>
+      </div>        
+      <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+        <style>
+            p{
+                margin-top: 5%;
+                 background-color: rgb(103, 207, 33);
+                  padding: 20px;
+                   display: block;
+                    border-radius: 20px;
+            }
+
+            .circle_button{
+                background-color: rgba(68,68,68,0.9);
+        border-radius: 50%;
+        border: none;
+        height: 150px;
+        width: 150px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        font-size: xx-large;
+            }
+
+            .circle_button:hover{
+opacity: 0.8;
+transform:scale(1.2,1.2);
+}
+        </style>';}
 // If send fails:
-else {echo "Something went wrong";}
+else {echo '        <meta charset="UTF-8">
+    <div class="alert">
+        <div style="text-align: center;">
+        <p>
+        Възникна проблем с изпращането на съобщението. Опитайте отново по-късно. Натиснете бутона, за да се върнете към предишната страница.
+        </p>
+        <button class="circle_button" onclick="goBack()">&#10094;</button>
+    </div>
+      </div>        
+      <script>
+        function goBack() {
+          window.history.back();
+        }
+        </script>
+        <style>
+            p{
+                margin-top: 5%;
+                 background-color: rgb(223, 70, 70);
+                  padding: 20px;
+                   display: block;
+                    border-radius: 20px;
+            }
+
+            .circle_button{
+                background-color: rgba(68,68,68,0.9);
+        border-radius: 50%;
+        border: none;
+        height: 150px;
+        width: 150px;
+        padding: 20px;
+        text-align: center;
+        cursor: pointer;
+        text-decoration: none;
+        color: white;
+        font-size: xx-large;
+            }
+
+            .circle_button:hover{
+opacity: 0.8;
+transform:scale(1.2,1.2);
+}
+        </style>';}
 ?>
