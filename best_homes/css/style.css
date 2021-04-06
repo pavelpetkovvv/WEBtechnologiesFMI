@@ -397,7 +397,7 @@ input[type=text] {
   position: absolute;
   z-index: 1;
   display: none;
-  top: 23%;
+  top: 160px;
   width: auto;
   padding: 0px;
   color: rgb(255, 255, 255);
@@ -467,4 +467,21 @@ input[type=text] {
 
 .page_heading_text{
     padding: 15px;
+}
+
+.help_arrow_bottom{
+    position: relative;
+  z-index: 1;
+  display: flex;
+  top: 40%;
+  width: auto;
+  padding: 0px;
+  color: rgb(0, 0, 0);
+  font-weight: bold;
+  font-size: 15px;
+  border-radius: 0 3px 3px 0;
+  user-select: none;
+  -webkit-user-select: none;
+  pointer-events: none;
+  animation: infinite 10s blink;
 }
