@@ -12,89 +12,80 @@ $send = mail ("best.homes@abv.bg", "website feedback",$mes,"Content-type:text/pl
 // If send successful:
 if ($send == 'true')
 // ‘Echo’ returns some text back to the webpage.
-{echo '<meta charset="UTF-8">
-    <div class="alert">
-        <div style="text-align: center;">
-        <p>
-        Съобщението е изпратено успешно. Натиснете бутона, за да се върнете към предишната страница.
-        </p>
-        <button class="circle_button" onclick="goBack()">&#10094;</button>
-    </div>
-      </div>        
-      <script>
-        function goBack() {
-          window.history.back();
-        }
-        </script>
-        <style>
-            p{
-                margin-top: 5%;
-                 background-color: rgb(103, 207, 33);
-                  padding: 20px;
-                   display: block;
-                    border-radius: 20px;
-            }
+{echo '
+  <script>
+  window.history.back();
+  </script>';}
 
-            .circle_button{
-                background-color: rgba(68,68,68,0.9);
-        border-radius: 50%;
-        border: none;
-        height: 150px;
-        width: 150px;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-        text-decoration: none;
-        color: white;
-        font-size: xx-large;
-            }
+  // If send fails:
+else {echo '                <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script  src="../js/main.js" defer></script>
 
-            .circle_button:hover{
-opacity: 0.8;
-transform:scale(1.2,1.2);
+  <title>Best homes</title>
+
+
+  <style>
+header{
+position: relative;
+text-align: center;
 }
-        </style>';}
-// If send fails:
-else {echo '        <meta charset="UTF-8">
-    <div class="alert">
-        <div style="text-align: center;">
-        <p>
-        Възникна проблем с изпращането на съобщението. Опитайте отново по-късно. Натиснете бутона, за да се върнете към предишната страница.
-        </p>
-        <button class="circle_button" onclick="goBack()">&#10094;</button>
-    </div>
-      </div>        
-      <script>
-        function goBack() {
-          window.history.back();
-        }
-        </script>
-        <style>
-            p{
-                margin-top: 5%;
-                 background-color: rgb(223, 70, 70);
-                  padding: 20px;
-                   display: block;
-                    border-radius: 20px;
-            }
 
-            .circle_button{
-                background-color: rgba(68,68,68,0.9);
-        border-radius: 50%;
-        border: none;
-        height: 150px;
-        width: 150px;
-        padding: 20px;
-        text-align: center;
-        cursor: pointer;
-        text-decoration: none;
-        color: white;
-        font-size: xx-large;
-            }
-
-            .circle_button:hover{
-opacity: 0.8;
-transform:scale(1.2,1.2);
+      .header_image_logo_container{
+      position: relative;
+      display: block;
+      float: left;
+      }
+      @media screen and (max-width: 710px) {
+      .site_heading_container{
+      display: none;
+      }
+      header{
+      display: block;
+      }
+      .header_image_logo_container {
+      position: relative;
+      float: none;
+      }
+      }
+      .site_heading{
+font-size: x-large;
+display:block;
 }
-        </style>';}
+
+.navigation{
+text-align: center;
+background-color: rgb(167, 40, 40);
+overflow: auto;
+}
+
+
+  </style>
+  <header>
+      <div class="header_top">
+          <div class="header_image_logo_container">
+              <img class="header_image_logo" src="../images/logo.jpg" alt="logo">
+          </div>
+          <div class="site_heading_container">
+              <p class="site_heading">BEST HOMES</p>
+          </div>
+      </div>
+  </header>
+
+  <div class="navigation">
+      <p class="site_heading">Възникна проблем при изпращането на съобщението, моля опитайте по-късно.</p>
+  </div>
+  <p>
+      Ще бъдете пренасочени към предишната страница.
+  </p>
+
+  <script>
+        function myLoop() {         
+setTimeout(function() {    
+  window.history.back();  
+}, 8000)
+}
+myLoop();
+
+  </script>';}
 ?>

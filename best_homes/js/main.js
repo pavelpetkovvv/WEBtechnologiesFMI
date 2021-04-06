@@ -14,7 +14,9 @@ function plusSlides(n) {
     for (i = 0; i < slides.length; i++) {
       slides[i].style.display = "none";
     }
-    slides[slideIndex-1].style.display = "block";
+    if(slides.length!=0){
+      slides[slideIndex-1].style.display = "block";
+    }
   }
 
 showSlides(slideIndex);
@@ -28,3 +30,12 @@ function myLoop() {
   }
   myLoop();
   
+
+  function displaySuccessMessage(){
+    console.log("aaaaaa");
+    var tag = document.createElement("p");
+   var text = document.createTextNode("Успешно изпратихте вашето съобщение.");
+   tag.appendChild(text);
+   var element = document.getElementById("success_message");
+   element.appendChild(tag);
+  }
