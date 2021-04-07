@@ -498,3 +498,38 @@ input[type=text] {
         display: flex;
     }
 }
+
+.price_ad_container{
+    width: 80%;
+    margin: auto;
+    text-align: center;
+    margin-top: 30px;
+    margin-bottom: 30px;
+}
+
+.price_ad{
+    width: 150px;
+    height: 100px;
+    background-color: rgba(146,158,84,255);
+    border-radius: 30px;
+    margin: auto;
+    border: none;
+    font-size: large;
+    cursor: pointer;
+    animation: infinite 5s rotate;
+}
+
+
+@keyframes rotate{
+    0%{
+    }
+    25%{
+        transform: rotate(30deg);
+    }
+    75%{
+        transform: rotate(-30deg);
+    }
+    100%{
+        transform: rotate(0deg);
+    }
+}
