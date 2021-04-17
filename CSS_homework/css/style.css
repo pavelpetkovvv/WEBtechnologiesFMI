@@ -1,0 +1,47 @@
+body{
+    background-color: #defdf1;
+    text-align: center;
+}
+
+form{
+    display: block;
+    margin: auto;
+    width: 425px;
+    text-align: center;
+    border: 2px solid;
+    border-color: #427d23;
+    padding: 12px;
+    padding-bottom: 30px;
+    padding-top: 30px;
+
+}
+
+input, select, button{
+    display: block;
+    margin: auto;
+    margin-bottom: 12px;
+    width: 365px;
+    height: 34px;
+    border: 2px solid #c3cdc0;
+    font-size: medium;
+}
+
+input:focus, select:focus{
+    outline: none;
+    border-color: #5d8949;
+}
+
+select, button{
+    width: 373px;
+    height: 40px;
+}
+
+button{
+    background-color: #cfe7d9;
+    color: #558d3d;
+}
+
+button:hover{
+    background-color: #558d3d;
+    color: #dcf1ea;
+}

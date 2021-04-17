@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="./css/style.css">
+
+    <title>Form</title>
+</head>
+<body>
+    <form action="">
+        <input id="username-field" type="text" placeholder="Потребителско име">
+        <input id="password-field" type="password" placeholder="Парола">
+        <input id="phone-number-field" type="number" placeholder="Телефон">
+        <input id="email-field" type="email" placeholder="Имейл адрес">
+        <select name="role" id="role-select">
+            <option value="owner">Собственик</option>
+            <option value="tenant">Наемател</option>
+            <option value="living">Живущ</option>
+        </select>
+        <input id="apartment-number-field" type="text" placeholder="Номер на апартамента">
+        <!-- apartament number input is text because of apartament nubers such as 12A, 15B etc. -->
+        <button type="submit">Регистрирай ме!</button>
+    </form>
+</body>
+</html>

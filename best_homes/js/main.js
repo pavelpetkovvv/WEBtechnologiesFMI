@@ -32,10 +32,10 @@ function myLoop() {
   
 
   function displaySuccessMessage(){
-    console.log("aaaaaa");
     var tag = document.createElement("p");
    var text = document.createTextNode("Успешно изпратихте вашето съобщение.");
    tag.appendChild(text);
    var element = document.getElementById("success_message");
    element.appendChild(tag);
+   document.getElementById("submit_button").remove;
   }

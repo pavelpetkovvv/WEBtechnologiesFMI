@@ -166,3 +166,7 @@ footer{
     border-radius: 20px;
     border: 2px solid rgb(78, 197, 193);
 }
+
+.links_container{
+    display: block;
+}
