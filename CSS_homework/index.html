@@ -6,22 +6,45 @@
 
     <link rel="stylesheet" href="./css/style.css">
 
+    <script defer src="./js/main.js"></script>
+
     <title>Form</title>
 </head>
 <body>
     <form action="">
-        <input id="username-field" type="text" placeholder="Потребителско име">
-        <input id="password-field" type="password" placeholder="Парола">
-        <input id="phone-number-field" type="number" placeholder="Телефон">
-        <input id="email-field" type="email" placeholder="Имейл адрес">
+        <input class="input-normal" id="username-field" type="text" placeholder="Потребителско име">
+            <div class="invalid-input-message-container" id="invalid-username-message-container">
+                <!-- container for error message -->
+            </div>
+
+        <input class="input-normal" id="password-field" type="password" placeholder="Парола">
+            <div class="invalid-input-message-container" id="invalid-password-message-container">
+
+            </div>
+
+        <input class="input-normal" id="phone-number-field" type="text" placeholder="Телефон">
+            <div  class="invalid-input-message-container" id="invalid-phone-number-message-container">
+
+            </div>
+
+        <input class="input-normal" id="email-field" type="email" placeholder="Имейл адрес">
+            <div class="invalid-input-message-container" id="invalid-email-message-container">
+
+            </div>
+
         <select name="role" id="role-select">
             <option value="owner">Собственик</option>
             <option value="tenant">Наемател</option>
             <option value="living">Живущ</option>
         </select>
-        <input id="apartment-number-field" type="text" placeholder="Номер на апартамента">
+
+        <input class="input-normal" id="apartment-number-field" type="text" placeholder="Номер на апартамента">
         <!-- apartament number input is text because of apartament nubers such as 12A, 15B etc. -->
-        <button type="submit">Регистрирай ме!</button>
+            <div class="invalid-input-message-container" id="invalid-apartment-number-message-container">
+
+            </div>
+
+        <button type="button" class="submit-button" onclick="checkAndSubmit()">Регистрирай ме!</button>
     </form>
 </body>
 </html>

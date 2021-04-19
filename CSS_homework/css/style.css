@@ -31,6 +31,11 @@ input:focus, select:focus{
     border-color: #5d8949;
 }
 
+input:hover, select:hover{
+    border-color: #5d8949;
+}
+
+
 select, button{
     width: 373px;
     height: 40px;
@@ -44,4 +49,30 @@ button{
 button:hover{
     background-color: #558d3d;
     color: #dcf1ea;
+    cursor: pointer;
+}
+
+/*invalid input*/
+
+.invalid-input-message-container{
+    text-align: center;
+}
+
+.invalid-input-message{
+    margin: auto;
+    width: 365px;
+    height: 34px;
+    margin-bottom: 12px;
+    font-size: medium;
+    background-color: #b0706d;
+    border-color: #b0706d;
+}
+
+.invalid-input-message::placeholder{
+    color: white;
+}
+
+.input-invalid{
+    border: 2px solid #b0706d;
+
 }
