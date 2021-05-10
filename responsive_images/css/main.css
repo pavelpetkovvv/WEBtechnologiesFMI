@@ -48,6 +48,9 @@ footer{
     border-radius: 20px;
     text-align: center;
     background-color: rgb(78, 197, 193);
+    text-align: left;
+    padding: 5px;
+    color: white;
 }
 
 .navigation{
