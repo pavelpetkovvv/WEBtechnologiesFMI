@@ -21,15 +21,11 @@
                 $quantity = $quantity + $row['quantity'];
                 $stmt->execute([$quantity, "$productName"]);
 
-                echo 'true';
-
              }else{
                 $sql = "INSERT into products (id, nameOfProduct, quantity) values (DEFAULT, '$productName', $quantity)";
 
                 $stmt = $connection->prepare($sql);
                 $stmt->execute();
-    
-                echo 'false';
             }
 
 
