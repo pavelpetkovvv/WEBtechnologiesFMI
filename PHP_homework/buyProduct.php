@@ -18,7 +18,6 @@
                 return false;
             }
             $quantity-=1;
-            echo $quantity;
 
             $sql = "UPDATE products SET quantity=? WHERE id=?";
 
