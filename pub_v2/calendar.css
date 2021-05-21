@@ -1,0 +1,143 @@
+.table {
+    border-collapse: collapse;
+    width: 100%;z-index: -1;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+tr:nth-child(even){background-color: #f2f2f2}
+
+
+.day:hover{
+	background-color: #8bc34a;
+	color: white;
+	}
+	
+.day1{
+		
+		background-color: rgb(183,212,252);
+}
+.day1:hover{
+	background-color: rgb(110,129,255);
+}
+
+.event:hover{
+	background-color: #8bc34a;
+	color: white;
+	}
+button{
+	margin: 1px;
+	background-color: #259b24;
+	color: white;
+	border:2px solid  #259b24;
+}
+button:hover{
+	background-color: #8bc34a;
+	border:2px solid  #8bc34a;
+}
+
+.viewday1{
+	background-color: rgb(110,129,255);
+	color: white;
+	border:2px solid  rgb(110,129,255);
+}
+
+.viewday1:hover{
+	background-color: rgb(183,212,252);
+	color: white;
+	border:2px solid  rgb(183,212,252);
+}
+
+.viewday2{
+	background-color: rgb(110,129,255);
+	color: white;
+	border:2px solid  rgb(110,129,255);
+}
+
+.viewday2:hover{
+	background-color: rgb(183,212,252);
+	color: white;
+	border:2px solid  rgb(183,212,252);
+}
+
+.viewday3{
+	background-color: rgb(110,129,255);
+	color: white;
+	border:2px solid  rgb(110,129,255);
+}
+
+.viewday3:hover{
+	background-color: rgb(183,212,252);
+	color: white;
+	border:2px solid  rgb(183,212,252);
+}
+
+.evform{
+	padding: 10px;
+	position: fixed;
+	bottom:200px;
+	left: 300px;
+	z-index: 2px;
+	height:320px;
+	width: 430px;
+	border:1px solid  #259b24;
+	border-radius: 5px;
+	background-color: white;
+}
+
+.evform2{
+	padding: 10px;
+	position: fixed;
+	bottom:200px;
+	left: 300px;
+	z-index: 2px;
+	height:160px;
+	width: 430px;
+	border:1px solid  #259b24;
+	border-radius: 5px;
+	background-color: white;
+}
+
+input{
+	width: 400px;
+	margin: 5px;
+}
+
+.submit{
+	margin-top: 15px;
+}
+.appt{
+	background-color: #ffff99;
+	color: black;
+	font-family:monospace;
+	font-size:16px;
+}
+
+.appt2{
+	background-color:#ff6347;
+	color: black;
+	font-family:monospace;
+	font-size:16px;
+}
+
+.appt3{
+	background-image: linear-gradient(to left, rgba(110,129,255,0), rgba(110,129,255,1));
+	font-family: monospace;
+	font-style: italic;
+	font-size:16px;
+}
+
+.selectSub{
+	color:	#006400;
+	font-family:monospace;
+}
+
+#subject{
+	font-family:serif;
+	font-weight: bold;
+	color:green;
+	position:relative;
+	top:7px;
+}
