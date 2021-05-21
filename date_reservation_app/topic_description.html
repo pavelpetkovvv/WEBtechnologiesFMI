@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Date reservation</title>
+
+         <!--link to used fonts-->
+         <link href="https://fonts.googleapis.com/css?family=Quicksand:300,500" rel="stylesheet">
+         <link rel="preconnect" href="https://fonts.gstatic.com">
+         <link href="https://fonts.googleapis.com/css2?family=Didact+Gothic&family=Istok+Web&display=swap" rel="stylesheet"> 
+
+        <script src="./js/main.js"></script>
+        <link rel="stylesheet" type="text/css" href="./css/style.css">
+    </head>
+
+    <body>
+        <header class="page-header">
+            <p class="page-heading">Niffup</p>
+            <!-- logo -->
+        </header>    
+        <nav class="nav-container">
+            <nav class="nav-main">
+                <a class="nav-main-button" href="./index.html">График</a>
+                <a class="nav-main-button" id="nav-button-active" href="./topic_description.html">Тема на презентация</a>
+                <a class="nav-main-button" href="">Изход</a>
+            </nav>
+        </nav>
+
+        <form class="topic-description-form" action="">
+            <input class="topic-name" type="text" placeholder="Тема на реферат">
+
+            <div class="checkbox-container">
+                <input class="topic-tag-checkbox" type="checkbox" name="Frontend" id="Frontend">
+                <label class="topic-tag-label" for="Frontend">
+                    Frontend
+                </label>
+            </div>
+
+            <div class="checkbox-container">
+                <input class="topic-tag-checkbox" type="checkbox" name="Backend" id="Backend">
+                <label class="topic-tag-label" for="Backend">
+                    Backend
+                </label>
+            </div>
+
+            <div class="checkbox-container">
+                <input class="topic-tag-checkbox" type="checkbox" name="Security" id="Security">
+                <label class="topic-tag-label" for="Security">
+                    Security
+                </label>
+            </div>
+
+            <div class="checkbox-container">
+                <input class="topic-tag-checkbox" type="checkbox" name="SPA" id="SPA">
+                <label class="topic-tag-label" for="SPA">
+                    SPA
+                </label>
+            </div>
+
+
+            <label class="description-label" for="Description">
+                Description
+            </label>
+            <textarea class="description-text-area" name="Description" id=""></textarea>
+
+            <input class="submit-button" type="submit" value="Submit">
+        </form>
+
+    </body>
+</html>
