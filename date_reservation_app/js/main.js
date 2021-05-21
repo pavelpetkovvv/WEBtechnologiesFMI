@@ -1,3 +1,6 @@
+//fetching information about available and reserved date and hour slots
+//and rendering them
+
 let presentationDates;
 let reservedHours;
 
@@ -10,34 +13,37 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
   })
   .then(function(){
     presentationDates.forEach(element => {
-      addDate(element.date);
-      createHours(element.date, element.startHour,element.endHour, element.presentationTime);
+      renderAvailableDateSlot(element.date);
+      renderAvailableHourSlot(element.date, element.startHour,element.endHour, element.presentationTime);
     })})
-    .then(function(){fetch('http://localhost/mydocs/date_reservation_app/php/getReservedHours.php')
-    .then(response => response.json())
-    .then(function(data) {
-      reservedHours=data;
-    }).catch(function(error) {
+    .then(function(){
+      fetch('http://localhost/mydocs/date_reservation_app/php/getReservedHours.php')
+      .then(response => response.json())
+      .then(function(data) {
+        reservedHours=data;
+      }).catch(function(error) {
         console.log('Request failed', error);
-
       })
-        .then(function(){
-          if(reservedHours){
-            console.log(reservedHours);
-            reservedHours.forEach(element =>{
-            createReservedHours(element.date, element.fn, element.presentationName, element.presentorName, element.time);
-            })}
+      .then(function(){
+        if(reservedHours){
+          console.log(reservedHours);
+          reservedHours.forEach(element =>{
+            renderReservedHourSlot(element.date, element.fn, element.presentationName, element.presentorName, element.time);
+          })}
         })
       })
   
 
 //insert dates into table  
-  function addDate(date){
+  function renderAvailableDateSlot(date){
     //get container to attach dateboxes to
     let calendarContaner = document.getElementById("calendar-box-container");
+
+    //checning if such date already exists
     if(document.getElementById(date)!=null){
       return;
     }
+
     //create datebox and attach it
     let dateBox = document.createElement("div");
     dateBox.setAttribute("class", "calendar-box");
@@ -52,11 +58,15 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
   }
 
   //create hour slots
-  function createHours(date, startHour, endHour, presentationTime){
+  function renderAvailableHourSlot(date, startHour, endHour, presentationTime){
+
     var startHours = splitHours(startHour)
     var endHours = splitHours(endHour);
+
     var dateID = document.getElementById(date);
 
+    //#region 
+    //split the date and set slots IDs to YYYY-MM-DD-HH-MM format depending on date and time
     while(!compareHours(startHours, endHours)){
       var slot = document.createElement("button");
       if(startHours[1] < 10){
@@ -74,24 +84,30 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
           slot.setAttribute("id", date+"-"+startHours[0].toString()+"-"+startHours[1].toString());
         }
       }
-      slot.setAttribute("class", "free");
       slot.setAttribute("onclick", "openReservtionForm(\"" + slot.getAttribute("id")+"\")");
       if(startHours[1] < 10){
         slot.innerHTML=startHours[0].toString()+":0"+startHours[1].toString();
       }else{
         slot.innerHTML=startHours[0].toString()+":"+startHours[1].toString();
       }
+      //#endregion
+
+      slot.setAttribute("class", "free");
       dateID.appendChild(slot);
-      addMinutes(startHours, parseInt(presentationTime));
+      addMinutesToHours(startHours, parseInt(presentationTime));
 
     }
   } 
 
-  function createReservedHours(date, fn, presentationName, presentorName, time){
+  //coverts available hour slot to reserved hour slot
+  //available hours slot with the date and hours must be present in DOM
+  function renderReservedHourSlot(date, fn, presentationName, presentorName, time){
     var id = date;
+
     var temp = time.toString().split(':', 2);
     id += "-" + temp[0];
     id += "-" + temp[1];
+
     temp = null;
 
     var slot = document.getElementById(id);
@@ -101,7 +117,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
     slot.innerHTML = presentationName + " - " + presentorName + " " + fn;
   }
 
-  /*accepst string in format: HH:MM:SS
+  /*accepts string in format: HH:MM:SS
   and returns array containing integers
   arr[0] = HH
   arr[1] = MM
@@ -144,7 +160,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
   returns the array with added minutes
   returns NULL if minutes < 0*/
 
-  function addMinutes(hours, minutes){
+  function addMinutesToHours(hours, minutes){
     if(minutes < 0){
       return null;
     }
@@ -164,23 +180,6 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
   }
 
 
-function sendData(id, topic, presentationName, fn, presentorName){
-  const xhr = new XMLHttpRequest();
-
-  xhr.open("POST", "./php/reserveDate.php");
-  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send("id="+id+"&topic="+topic+"&presentationName="+presentationName+"&fn="+fn+"&presentorName="+presentorName);
-
-  xhr.onload = function(){
-    if(this.responseText!="reserved"){
-    let response = JSON.parse(this.responseText);
-    createReservedHours(response.date, response.fn, response.presentationName, response.presentorName, response.time);
-  }
-  }
-}
-
-//sendData("2021-05-26-11-0", "HTML", "HTML Basics", 62302, "Pavel Petkov");
-
 //#region reservation form
 
 function closeReservationForm(){
@@ -189,11 +188,9 @@ function closeReservationForm(){
 
 function openReservtionForm(id){
   var formContainer = document.getElementById("dialogue-box-container");
-  //доообрее 
-  //(това го казах след като измислих как ще пиша кода и седнах до го пиша)
+  
   var form = document.createElement("form");
   form.setAttribute("id", "reservation-form");
-  //form.setAttribute("action", "getFormValue(\""+id+"\")");
   formContainer.appendChild(form);
 
   var p = document.createElement("p");
@@ -209,7 +206,7 @@ function openReservtionForm(id){
   var button = document.createElement("button");
   button.setAttribute("class", "reservation-form-submit");
   button.setAttribute("type", "button");
-  button.setAttribute("onclick", "getFormValue(\""+id+"\")");
+  button.setAttribute("onclick", "reserveSlot(\""+id+"\")");
   button.innerHTML="Запази час";
   form.appendChild(button);
 
@@ -270,7 +267,8 @@ function addOptionsToSelect(id, optionText){
 
 //#endregion
 
-function getFormValue(id) {
+//gets values from reservation form and sends data to backend
+function reserveSlot(id) {
   const noteForm = document.getElementById("reservation-form");
 
   var formData = new FormData(noteForm);
@@ -279,6 +277,27 @@ function getFormValue(id) {
   var presentorName = formData.get("presentorName");
   var topic = formData.get("topic");
 
-  sendData(id, topic, presentationName, facultyNumber, presentorName);
-  closeReservationForm();
+  //check if all fields are filled
+  if(presentationName && facultyNumber && presentorName){
+    reserveSlotSendData(id, topic, presentationName, facultyNumber, presentorName);
+    closeReservationForm();
+  }else{
+    //show error message
+  }
+}
+
+//helper function which sends data to backend
+function reserveSlotSendData(id, topic, presentationName, fn, presentorName){
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/reserveDate.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("id="+id+"&topic="+topic+"&presentationName="+presentationName+"&fn="+fn+"&presentorName="+presentorName);
+
+  xhr.onload = function(){
+    if(this.responseText!="reserved"){
+    let response = JSON.parse(this.responseText);
+    renderReservedHourSlot(response.date, response.fn, response.presentationName, response.presentorName, response.time);
+  }
+  }
 }
