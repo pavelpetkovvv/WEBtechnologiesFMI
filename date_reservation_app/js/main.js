@@ -26,7 +26,6 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
       })
       .then(function(){
         if(reservedHours){
-          console.log(reservedHours);
           reservedHours.forEach(element =>{
             renderReservedHourSlot(element.date, element.fn, element.presentationName, element.presentorName, element.time);
           })}
@@ -356,7 +355,7 @@ function openDeletionForm(id){
   p.innerHTML="Въведете паролата, с която е запазен часът, за да го отмените";
   form.appendChild(p);
 
-  addTypeInputs("deletion-form", "password", "text", "Парола");
+  addTypeInputs("deletion-form", "password", "password", "Парола");
 
   var button = document.createElement("button");
   button.setAttribute("class", "reservation-form-submit");
@@ -371,4 +370,53 @@ function openDeletionForm(id){
   button.innerHTML="Затвори";
   form.appendChild(button);
 
+}
+//#endregion
+
+//#region fetch presentations by topic
+
+function highlight(){
+  const select = document.getElementById("filter");
+  var filter = select.value;
+
+  fetchByTopic(filter);
+}
+
+
+function fetchByTopic(topic){
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/getPresentationsByTopic.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("topic="+topic);
+
+  xhr.onload = function(){
+    changeClass('taken-reccomended', 'taken');
+
+    if(this.responseText){
+      response = JSON.parse(this.responseText);
+      response.forEach(element => {
+        renderHightlighted(element.date, element.time);
+      });
+    }
+  }
+}
+
+function renderHightlighted(date, time){
+  var id = date;
+  timeArray = time.split(":");
+
+  id += "-" + timeArray[0] + "-" + timeArray[1];
+
+  var slot = document.getElementById(id);
+
+  slot.setAttribute('class', 'taken-reccomended');
+}
+
+function changeClass(oldClass, newClass){
+  var elements = document.getElementsByClassName(oldClass);
+
+  while (elements.length) {
+    elements[0].setAttribute('class', newClass);
+  }  
 }

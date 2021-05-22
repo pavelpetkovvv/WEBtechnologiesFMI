@@ -31,14 +31,7 @@
 
     <div class="calendar">
         <div id="calendar-box-container" class="calendar-box-container">
-            <div class="calendar-box">
-                <p>date</p>
-                    <button class="taken">10:00 Kalinа Kamenov - тема на презентация</button>
-                    <button class="free">10:05</button>
-                    <button class="taken-reccomended">10:10 Pavel Petkov - тема на презентация</button>
-                    <button class="free">10:15</button>
-                    <button class="free">10:20</button>
-            </div>
+            
         </div>
     </div>
 
@@ -46,5 +39,18 @@
         
 
     </div>
+
+    <select class="filter-select" name="filter" id="filter" onchange="highlight()">
+        <option value="-">-</option>
+        <option value="HTML">HTML</option>
+        <option value="CSS">CSS</option>
+        <option value="JavaScript">JavaScript</option>
+        <option value="PHP">PHP</option>
+        <option value="Database">Database</option>
+        <option value="Security">Security</option>
+        <option value="SPA">SPA</option>
+        <option value="Best practices">Best practices</option>
+    </select>
+
     </body>
 </html>

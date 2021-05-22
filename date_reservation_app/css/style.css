@@ -201,3 +201,19 @@ body{
 .reservation-form-submit:hover{
     background-color: #f76c6c;
 }
+
+/*reservation form CSS end */
+
+/*filter CSS*/
+
+.filter-select{
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    width: 200px;
+    height: 40px;
+
+    border: 3px solid #f76c6c;
+
+    outline: none;
+}
