@@ -104,17 +104,17 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
   function renderReservedHourSlot(date, fn, presentationName, presentorName, time){
     var id = date;
 
-    var temp = time.toString().split(':', 2);
-    id += "-" + temp[0];
-    id += "-" + temp[1];
+    var hour = time.toString().split(':', 2);
+    id += "-" + hour[0];
+    id += "-" + hour[1];
 
-    temp = null;
 
     var slot = document.getElementById(id);
 
     slot.setAttribute('class', 'taken');
+    slot.setAttribute('onclick', "openDeletionForm(\""+id+"\")")
 
-    slot.innerHTML = presentationName + " - " + presentorName + " " + fn;
+    slot.innerHTML = hour[0]+":"+hour[1] + " " + presentationName + " - " + presentorName + " " + fn;
   }
 
   /*accepts string in format: HH:MM:SS
@@ -182,8 +182,8 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
 
 //#region reservation form
 
-function closeReservationForm(){
-  document.getElementById("reservation-form").remove();
+function closeForm(id){
+  document.getElementById(id).remove();
 }
 
 function openReservtionForm(id){
@@ -197,9 +197,10 @@ function openReservtionForm(id){
   p.innerHTML=splitId(id);
   form.appendChild(p);
 
-  addTypeInputs("presentationName", "text", "Име на презентация");
-  addTypeInputs("facultyNumber", "number", "Факултетен номер");
-  addTypeInputs("presentorName", "text", "Име на презентатор");
+  addTypeInputs("reservation-form", "presentationName", "text", "Име на презентация");
+  addTypeInputs("reservation-form", "facultyNumber", "number", "Факултетен номер");
+  addTypeInputs("reservation-form", "presentorName", "text", "Име на презентатор");
+  addTypeInputs("reservation-form", "password", "text", "Парола");
 
   createSelect("reservation-form");
 
@@ -212,7 +213,7 @@ function openReservtionForm(id){
 
   var button = document.createElement("button");
   button.setAttribute("class", "reservation-form-submit");
-  button.setAttribute("onclick", "closeReservationForm()");
+  button.setAttribute("onclick", "closeForm(\"reservation-form\")");
   button.innerHTML="Затвори";
   form.appendChild(button);
 
@@ -228,8 +229,8 @@ function splitId(id){
   }
 }
 
-function addTypeInputs(name, type, placeholder){
-  var form = document.getElementById("reservation-form");
+function addTypeInputs(idToAttachTo, name, type, placeholder){
+  var form = document.getElementById(idToAttachTo);
 
   var input = document.createElement("input");
   input.setAttribute("name", name);
@@ -275,24 +276,25 @@ function reserveSlot(id) {
   var presentationName = formData.get("presentationName");
   var facultyNumber = formData.get("facultyNumber");
   var presentorName = formData.get("presentorName");
+  var password = formData.get("password");
   var topic = formData.get("topic");
 
   //check if all fields are filled
-  if(presentationName && facultyNumber && presentorName){
-    reserveSlotSendData(id, topic, presentationName, facultyNumber, presentorName);
-    closeReservationForm();
+  if(presentationName && facultyNumber && presentorName && password){
+    reserveSlotSendData(id, topic, presentationName, facultyNumber, presentorName, password);
+    closeForm("reservation-form");
   }else{
     //show error message
   }
 }
 
 //helper function which sends data to backend
-function reserveSlotSendData(id, topic, presentationName, fn, presentorName){
+function reserveSlotSendData(id, topic, presentationName, fn, presentorName, password){
   const xhr = new XMLHttpRequest();
 
   xhr.open("POST", "./php/reserveDate.php");
   xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
-  xhr.send("id="+id+"&topic="+topic+"&presentationName="+presentationName+"&fn="+fn+"&presentorName="+presentorName);
+  xhr.send("id="+id+"&topic="+topic+"&presentationName="+presentationName+"&fn="+fn+"&presentorName="+presentorName+"&password="+password);
 
   xhr.onload = function(){
     if(this.responseText!="reserved"){
@@ -300,4 +302,73 @@ function reserveSlotSendData(id, topic, presentationName, fn, presentorName){
     renderReservedHourSlot(response.date, response.fn, response.presentationName, response.presentorName, response.time);
   }
   }
+}
+
+//#region delition of reserved slot
+function deleteReservation(id){
+  const noteForm = document.getElementById("deletion-form");
+
+  var formData = new FormData(noteForm);
+  var password = formData.get("password");
+
+  //check if all fields are filled
+  if(password){
+    deleteReservationSendData(id, password);
+    closeForm("deletion-form");
+  }else{
+    //show error message
+  }
+}
+
+
+function deleteReservationSendData(id, password){
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/deleteReservation.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("id="+id+"&password="+password);
+
+  xhr.onload = function(){
+    if(this.responseText == "reservation deleted"){
+      removeReservedSlot(id);
+    }
+  }
+}
+
+function removeReservedSlot(id){
+  var slot = document.getElementById(id);
+  var time = id.toString().split("-");
+
+  slot.setAttribute('class', 'free');
+  slot.setAttribute('onclick', "reserveSlot(\""+id+"\")");
+  slot.innerHTML = time[3] + ":" + time[4];
+
+}
+
+function openDeletionForm(id){
+  var formContainer = document.getElementById("dialogue-box-container");
+  
+  var form = document.createElement("form");
+  form.setAttribute("id", "deletion-form");
+  formContainer.appendChild(form);
+
+  var p = document.createElement("p");
+  p.innerHTML="Въведете паролата, с която е запазен часът, за да го отмените";
+  form.appendChild(p);
+
+  addTypeInputs("deletion-form", "password", "text", "Парола");
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "reservation-form-submit");
+  button.setAttribute("type", "button");
+  button.setAttribute("onclick", "deleteReservation(\""+id+"\")");
+  button.innerHTML="Изтрий час";
+  form.appendChild(button);
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "reservation-form-submit");
+  button.setAttribute("onclick", "closeForm(\"deletion-form\")");
+  button.innerHTML="Затвори";
+  form.appendChild(button);
+
 }

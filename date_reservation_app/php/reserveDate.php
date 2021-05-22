@@ -3,7 +3,7 @@
 
     require_once("./db.php");
 
-    function reserveDate($presentationName, $fn,  $presentorName, $topic, $date, $time){
+    function reserveDate($presentationName, $fn,  $presentorName, $topic, $date, $time, $password){
        try {
 
             $db = new DB();
@@ -18,10 +18,10 @@
                 echo 'reserved';
             }else{
 
-            $sql = "INSERT INTO reserveddates(presentationName, fn, presentorName, topic, date, time) values (?, ?, ?, ?, ?, ?)";
+            $sql = "INSERT INTO reserveddates(presentationName, fn, presentorName, topic, date, time, password) values (?, ?, ?, ?, ?, ?, ?)";
 
             $stmt = $connection->prepare($sql);
-            $stmt->execute([$presentationName, $fn, $presentorName, $topic, $date, $time]);
+            $stmt->execute([$presentationName, $fn, $presentorName, $topic, $date, $time, $password]);
 
             $sql = "SELECT * from reserveddates WHERE date=? && time=?";
 
@@ -42,6 +42,6 @@
     $dateAndTime = explode("-", $post_var['id']);
 
     reserveDate($post_var['presentationName'], $post_var['fn'], $post_var['presentorName'], $post_var['topic'],
-     "$dateAndTime[0]-$dateAndTime[1]-$dateAndTime[2]", "$dateAndTime[3]:$dateAndTime[4]");
+     "$dateAndTime[0]-$dateAndTime[1]-$dateAndTime[2]", "$dateAndTime[3]:$dateAndTime[4]", $post_var['password']);
 
 ?>

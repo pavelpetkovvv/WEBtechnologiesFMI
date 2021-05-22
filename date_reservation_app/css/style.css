@@ -171,11 +171,11 @@ body{
 
 /*reservation form css*/
 
-#reservation-form{
+#reservation-form, #deletion-form{
     position: fixed;
     width: 50%;
-    height: 50%;
-    top: 25%;
+    height: 60%;
+    top: 20%;
     left: 25%;
     background-color: #f8e9a1;
     border: 3px solid black;
