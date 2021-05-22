@@ -8,7 +8,7 @@
             $connection = $db->getConnection();
 
 
-            $sql = "SELECT * from presentationdates";
+            $sql = "SELECT * from presentationdates ORDER BY date, startHour";
 
             $stmt = $connection->prepare($sql);
             $stmt->execute();
