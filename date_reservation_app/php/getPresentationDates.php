@@ -14,11 +14,14 @@
             $stmt->execute();
 
 
+            $flag = 0;
             while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
                 $data_array[]=$row;
+                $flag = 1;
             }
 
-            echo(json_encode($data_array));
+            if($flag)
+                echo(json_encode($data_array));
             
 
         } catch (PDOException $e) {

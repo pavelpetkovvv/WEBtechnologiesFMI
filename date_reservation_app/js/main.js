@@ -3,6 +3,7 @@
 
 let presentationDates;
 let reservedHours;
+let presentationPauses;
 
 fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php')
   .then(response => response.json())
@@ -12,10 +13,12 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
     console.log('Request failed', error);
   })
   .then(function(){
-    presentationDates.forEach(element => {
-      renderAvailableDateSlot(element.date);
-      renderAvailableHourSlot(element.date, element.startHour,element.endHour, element.presentationTime);
-    })})
+    if(presentationDates){
+      presentationDates.forEach(element => {
+        renderAvailableDateSlot(element.date);
+        renderAvailableHourSlot(element.date, element.startHour,element.endHour, element.presentationTime);
+      }
+    )}})
     .then(function(){
       fetch('http://localhost/mydocs/date_reservation_app/php/getReservedHours.php')
       .then(response => response.json())
@@ -31,6 +34,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
           })}
         })
       })
+  
   
 
 //insert dates into table  
@@ -97,6 +101,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
 
     }
   } 
+
 
   //coverts available hour slot to reserved hour slot
   //available hours slot with the date and hours must be present in DOM
@@ -221,11 +226,8 @@ function openReservtionForm(id){
 function splitId(id){
   var idArr = id.toString().split("-");
 
-  if(parseInt(idArr[4])<10){
-    return idArr[0]+"-"+idArr[1]+"-"+idArr[2]+" "+idArr[3]+":0"+idArr[4];
-  }else{
-    return idArr[0]+"-"+idArr[1]+"-"+idArr[2]+" "+idArr[3]+":"+idArr[4];
-  }
+  return idArr[0]+"-"+idArr[1]+"-"+idArr[2]+" "+idArr[3]+":"+idArr[4];
+  
 }
 
 function addTypeInputs(idToAttachTo, name, type, placeholder){
