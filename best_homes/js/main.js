@@ -33,9 +33,44 @@ function myLoop() {
 
   function displaySuccessMessage(){
     var tag = document.createElement("p");
+
+
    var text = document.createTextNode("Успешно изпратихте вашето съобщение.");
    tag.appendChild(text);
    var element = document.getElementById("success_message");
+   element.innerHTML="";
    element.appendChild(tag);
    document.getElementById("submit_button").remove;
   }
+
+  function sendEmail(){
+
+    const noteForm = document.getElementById("email_form");
+
+    var formData = new FormData(noteForm);
+    var client_name = formData.get("client_name");
+    var client_email = formData.get("client_email");
+    var client_text = formData.get("client_text");
+
+    console.log(client_name);
+    console.log(client_email);
+    console.log(client_text);
+
+
+    if(client_email && client_name && client_text){
+
+    const xhr = new XMLHttpRequest();
+
+    xhr.open("POST", "./php/feedback_handler.php");
+    xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xhr.send("client_name="+client_name+"&client_email="+client_email+"&client_text="+client_text);
+    
+
+    xhr.onload = function(){
+      console.log(this.responseText);
+    }
+    }
+    displaySuccessMessage();
+  }
+
+  

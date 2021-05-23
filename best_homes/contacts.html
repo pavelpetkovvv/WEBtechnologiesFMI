@@ -84,14 +84,14 @@
 
         <div class="email_form_container">
             <div class="email_form_box">
-                <form class="email_form" onsubmit="displaySuccessMessage()" action="./php/feedback_handler.php" method="POST">
+                <form class="email_form" id="email_form">
                     <label for="client_name">Вашето име</label>
                     <input type="text" name="client_name" id="client_name" required>
                     <label for="client_email">Вашият e-mail</label>
                     <input type="email" name="client_email" id="client_email" required>
                     <label for="client_text">Вашето съобщение</label>
                     <textarea name="client_text" id="client_text" required rows="10" cols="40"></textarea>
-                    <input id="submit_button" type="submit">
+                    <button id="submit_button" type="button" onclick="sendEmail()">Изпрати</button>
                     <div id="success_message">
                     </div>
                 </form>

@@ -2,9 +2,5 @@
 
 //php code removed for security reasons
 
-echo '
-  <script>
-  window.history.back();
-  </script>'
-
+echo json_encode($_POST);
 ?>
