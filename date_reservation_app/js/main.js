@@ -17,6 +17,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
       presentationDates.forEach(element => {
         renderAvailableDateSlot(element.date);
         renderAvailableHourSlot(element.date, element.startHour,element.endHour, element.presentationTime);
+        renderEmpty(element.date);
       }
     )}})
     .then(function(){
@@ -102,6 +103,14 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
     }
   } 
 
+
+  function renderEmpty(date){
+    var dateID = document.getElementById(date);
+
+    var empty = document.createElement('div');
+    empty.setAttribute('class', 'empty-space');
+    dateID.appendChild(empty);
+  }
 
   //coverts available hour slot to reserved hour slot
   //available hours slot with the date and hours must be present in DOM
@@ -251,7 +260,7 @@ function createSelect(id){
   select.setAttribute("id", "topic");
   form.appendChild(select);
 
-  var options = ["HTML", "CSS", "JavaScript", "PHP", "Database", "Security", "SPA", "Best practices"];
+  var options = ["HTML", "CSS", "JavaScript", "PHP", "Database", "Security", "SPA", "Best practices", "Other"];
 
   options.forEach(element => {
     addOptionsToSelect("topic", element);
