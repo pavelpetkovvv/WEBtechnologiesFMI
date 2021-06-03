@@ -1,0 +1,78 @@
+body{
+    background-color: #DEFDF1;
+    display: block;
+    text-align: center;
+}
+
+.container {
+    display: inline-block;
+    border: 1px solid #427D24;
+    width: 420px;
+    text-align: center;
+    background-color: #DEFDF1;
+}
+
+#registration-form {
+    margin: 30px 30px 20px;
+    display: inline-block;
+}
+
+input, select, #submit {
+    border: 2px solid #B2BCAF;
+    width: 360px;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+input:hover, select:hover {
+    border-color: #79A06B;
+}
+input, select {
+    box-sizing: border-box;
+    display: block;
+}
+
+#submit {
+    color: #558D3E;
+    background-color: #CEE7D9;
+}
+
+#submit:hover{
+    background-color: #558D3D;
+    color: #CEE7D9;
+}
+
+.error-box{
+    display: block;
+
+    width: 360px;
+    height: 30px;
+   
+    background-color: #af706d;
+    margin-bottom: 10px;
+
+    text-align: left;
+    line-height: 30px;
+}
+
+.error-text{
+    margin: auto;
+    padding-left: 5px;
+    color: #fdfbfb;
+}
+
+.success-box{
+    display: block;
+    height: 30px;
+    width: 360px;
+    margin-top: 10px;
+    background-color: green;
+    text-align: left;
+    line-height: 30px;
+}
+
+.success-text{
+    color: #fdfbfb;
+    padding-left: 5px;
+    margin: auto;
+}
