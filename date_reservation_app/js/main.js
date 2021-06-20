@@ -125,7 +125,7 @@ fetch('http://localhost/mydocs/date_reservation_app/php/getPresentationDates.php
     var slot = document.getElementById(id);
 
     slot.setAttribute('class', 'taken');
-    slot.setAttribute('onclick', "openDeletionForm(\""+id+"\")")
+    slot.setAttribute('onclick', "renderRedactionForm(\""+id+"\")")
 
     slot.innerHTML = hour[0]+":"+hour[1] + " " + presentationName + " - " + presentorName + " " + fn;
   }
@@ -257,7 +257,7 @@ function createSelect(id){
   var select = document.createElement("select");
   select.setAttribute("class", "reservation-form-input");
   select.setAttribute("name", "topic");
-  select.setAttribute("id", "topic");
+  select.setAttribute("id", "topic"); 
   form.appendChild(select);
 
   var options = ["HTML", "CSS", "JavaScript", "PHP", "Database", "Security", "SPA", "Best practices", "Other"];
@@ -316,7 +316,7 @@ function reserveSlotSendData(id, topic, presentationName, fn, presentorName, pas
 
 //#region delition of reserved slot
 function deleteReservation(id){
-  const noteForm = document.getElementById("deletion-form");
+  const noteForm = document.getElementById("redaction-form");
 
   var formData = new FormData(noteForm);
   var password = formData.get("password");
@@ -324,7 +324,7 @@ function deleteReservation(id){
   //check if all fields are filled
   if(password){
     deleteReservationSendData(id, password);
-    closeForm("deletion-form");
+    closeForm("redaction-form");
   }else{
     //show error message
   }
@@ -430,4 +430,166 @@ function changeClass(oldClass, newClass){
   while (elements.length) {
     elements[0].setAttribute('class', newClass);
   }  
+}
+
+//#endregion
+
+//#region redact data
+
+function fetchByID(id){
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/getDataByID.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("id="+id);
+
+  xhr.onload = function(){
+    if(this.responseText){
+      response = JSON.parse(this.responseText);
+      //console.log(response);
+
+      var id = response.date;
+      timeArray = response.time.split(":");
+
+      id += "-" + timeArray[0] + "-" + timeArray[1];
+
+
+      renderRedactionFormHelper(id, response.presentationName, response.presentorName, response.fn, response.topic);
+    }
+  }
+}
+
+function renderRedactionForm(id){
+  fetchByID(id);
+}
+
+
+function renderRedactionFormHelper(id, presentationName, presentorName, facultyNumber, topic){
+  var formContainer = document.getElementById("dialogue-box-container");
+  
+  var form = document.createElement("form");
+  form.setAttribute("id", "redaction-form");
+  formContainer.appendChild(form);
+
+  var p = document.createElement("p");
+  p.innerHTML=splitId(id);
+  form.appendChild(p);
+
+  addTypeInputsWithData("redaction-form", "presentationName", "text", presentationName);
+  addTypeInputsWithData("redaction-form", "facultyNumber", "number", facultyNumber);
+  addTypeInputsWithData("redaction-form", "presentorName", "text", presentorName);
+
+  createSelectWitValue("redaction-form", topic);
+
+  var p = document.createElement("p");
+  p.innerHTML="Въведете паролата, с която е запазен часът, за да го отмените";
+  form.appendChild(p);
+
+  addTypeInputs("redaction-form", "password", "password", "Парола");
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "reservation-form-submit");
+  button.setAttribute("type", "button");
+  button.setAttribute("onclick", "updateData(\""+id+"\")");
+  button.innerHTML="Запази новите данни";
+  form.appendChild(button);
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "reservation-form-submit");
+  button.setAttribute("type", "button");
+  button.setAttribute("onclick", "deleteReservation(\""+id+"\")");
+  button.innerHTML="Изтрий час";
+  form.appendChild(button);
+
+  var button = document.createElement("button");
+  button.setAttribute("class", "reservation-form-submit");
+  button.setAttribute("onclick", "closeForm(\"redaction-form\")");
+  button.innerHTML="Затвори";
+  form.appendChild(button);
+
+}
+
+function addTypeInputsWithData(idToAttachTo, name, type, text){
+  var form = document.getElementById(idToAttachTo);
+
+  var input = document.createElement("input");
+  input.setAttribute("name", name);
+  input.setAttribute("class", "reservation-form-input");
+  input.setAttribute("type", type);
+  input.setAttribute("value", text);
+
+  form.appendChild(input);
+}
+
+
+function createSelectWitValue(id, value){
+  var form = document.getElementById(id);
+
+  var select = document.createElement("select");
+  select.setAttribute("class", "reservation-form-input");
+  select.setAttribute("name", "topic");
+  select.setAttribute("id", "topic"); 
+  form.appendChild(select);
+
+  var options = ["HTML", "CSS", "JavaScript", "PHP", "Database", "Security", "SPA", "Best practices", "Other"];
+
+  options.forEach(element => {
+    if(element == value)
+      addOptionsToSelectSelectedOption("topic", element);
+    else
+      addOptionsToSelect("topic", element);
+  });
+}
+
+
+function addOptionsToSelectSelectedOption(id, optionText){
+  var select = document.getElementById(id);
+
+  var option = document.createElement("option");
+  option.setAttribute("value", optionText);
+  option.setAttribute("selected", "selected");
+  option.innerHTML=optionText;
+  select.appendChild(option);
+}
+
+
+
+//gets values from redaction form and sends data to backend
+function updateData(id) {
+  const noteForm = document.getElementById("redaction-form");
+
+  var formData = new FormData(noteForm);
+  var presentationName = formData.get("presentationName");
+  var facultyNumber = formData.get("facultyNumber");
+  var presentorName = formData.get("presentorName");
+  var password = formData.get("password");
+  var topic = formData.get("topic");
+
+  //check if all fields are filled
+  if(presentationName && facultyNumber && presentorName && password){
+    updateDataSendData(id, topic, presentationName, facultyNumber, presentorName, password);
+    closeForm("redaction-form");
+  }else{
+    //show error message
+  }
+}
+
+//helper function which sends data to backend
+function updateDataSendData(id, topic, presentationName, fn, presentorName, password){
+  const xhr = new XMLHttpRequest();
+
+  xhr.open("POST", "./php/updateData.php");
+  xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+  xhr.send("id="+id+"&topic="+topic+"&presentationName="+presentationName+"&fn="+fn+"&presentorName="+presentorName+"&password="+password);
+
+  xhr.onload = function(){
+    //console.log(this.responseText);
+    let response = JSON.parse(this.responseText);
+
+    if(response!="incorrect password"){
+
+    removeReservedSlot(id);
+    renderReservedHourSlot(response.date, response.fn, response.presentationName, response.presentorName, response.time);
+  }
+  }
 }

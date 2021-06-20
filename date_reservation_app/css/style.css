@@ -182,7 +182,7 @@ body{
 
 /*reservation form css*/
 
-#reservation-form, #deletion-form{
+#redaction-form, #reservation-form, #deletion-form{
     position: fixed;
     width: 50%;
     height: 60%;
