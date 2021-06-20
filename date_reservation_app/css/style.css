@@ -185,7 +185,7 @@ body{
 #redaction-form, #reservation-form, #deletion-form{
     position: fixed;
     width: 50%;
-    height: 60%;
+    height: 500px;
     top: 20%;
     left: 25%;
     background-color: #f1f1f1;
@@ -243,4 +243,13 @@ body{
 .empty-space{
     width: 80%;
     height: 30px;
+}
+
+.export{
+    display: block;
+    margin: auto;
+    margin-bottom: 20px;
+
+    width: 150px;
+    height: 40px;
 }
